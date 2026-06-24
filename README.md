@@ -70,7 +70,8 @@ npm install
 npm start``
 ✏️ Customize (ONLY 3 Steps)
 1. Edit Content
-ONLY file to edit: /frontend/src/data/PortfolioContent.js
+``
+ONLY file to edit: /frontend/src/data/PortfolioContent.js``
 
 Change everything:
 
@@ -87,28 +88,37 @@ Skills: add/remove skills with levels
 2. Add Your CV
 bash
 # Place your CV in:
+```
 /frontend/src/assets/CV/your_cv.pdf
+```
 
 # Update import in /frontend/src/components/Hero.jsx:
+```
 import cvPDF from "../assets/CV/your_cv.pdf";
+```
 3. Add Project Images
 bash
 # Place images in:
+```
 /frontend/src/assets/images/your-image.png
+```
 
 # Import in PortfolioContent.js:
+```
 import Project1 from "../assets/images/your-image.png";
+```
 📧 Contact Form Setup (Optional)
-Sign up at EmailJS
+- Sign up at EmailJS
 
-Create a service & template
+- Create a service & template
 
-Create .env file in /frontend/:
+- Create .env file in /frontend/:
 
-env
+``env
 REACT_APP_EMAILJS_SERVICE_ID=your_service_id
 REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
-REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
+REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key``
+
 🚀 Deploy to Vercel
 https://vercel.com/button
 
