@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import emailjs from "@emailjs/browser";
 import PortfolioContent from "../data/PortfolioContent";
 import "../styles/Contact.css";
@@ -19,14 +19,43 @@ export default function Contact() {
   const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-  useEffect(() => {
-    if (PUBLIC_KEY) {
-      emailjs.init(PUBLIC_KEY);
-    }
-    checkCooldown();
-  }, [PUBLIC_KEY]);
+  const formatTime = useCallback((milliseconds) => {
+    const seconds = Math.floor(milliseconds / 1000);
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
 
-  const checkCooldown = () => {
+    if (hours > 0) {
+      return `${hours}h ${minutes}m ${secs}s`;
+    } else if (minutes > 0) {
+      return `${minutes}m ${secs}s`;
+    } else {
+      return `${secs}s`;
+    }
+  }, []);
+
+  const startCountdown = useCallback((remaining) => {
+    const interval = setInterval(() => {
+      setCooldownRemaining((prev) => {
+        const newTime = prev - 1000;
+        if (newTime <= 0) {
+          clearInterval(interval);
+          localStorage.removeItem("lastEmailSent");
+          setStatus({ type: "", message: "" });
+          return 0;
+        }
+        setStatus({
+          type: "info",
+          message: `Please wait ${formatTime(newTime)} before sending another message.`,
+        });
+        return newTime;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [formatTime]);
+
+  const checkCooldown = useCallback(() => {
     const lastSent = localStorage.getItem("lastEmailSent");
     if (lastSent) {
       const lastSentTime = parseInt(lastSent, 10);
@@ -50,43 +79,14 @@ export default function Contact() {
       }
     }
     return false;
-  };
+  }, [startCountdown, formatTime]);
 
-  const startCountdown = (remaining) => {
-    const interval = setInterval(() => {
-      setCooldownRemaining((prev) => {
-        const newTime = prev - 1000;
-        if (newTime <= 0) {
-          clearInterval(interval);
-          localStorage.removeItem("lastEmailSent");
-          setStatus({ type: "", message: "" });
-          return 0;
-        }
-        setStatus({
-          type: "info",
-          message: `Please wait ${formatTime(newTime)} before sending another message.`,
-        });
-        return newTime;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  };
-
-  const formatTime = (milliseconds) => {
-    const seconds = Math.floor(milliseconds / 1000);
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-
-    if (hours > 0) {
-      return `${hours}h ${minutes}m ${secs}s`;
-    } else if (minutes > 0) {
-      return `${minutes}m ${secs}s`;
-    } else {
-      return `${secs}s`;
+  useEffect(() => {
+    if (PUBLIC_KEY) {
+      emailjs.init(PUBLIC_KEY);
     }
-  };
+    checkCooldown();
+  }, [PUBLIC_KEY, checkCooldown]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,15 +99,9 @@ export default function Contact() {
     }
 
     if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
-      console.error("Missing env vars:", {
-        SERVICE_ID: !!SERVICE_ID,
-        TEMPLATE_ID: !!TEMPLATE_ID,
-        PUBLIC_KEY: !!PUBLIC_KEY,
-      });
       setStatus({
         type: "error",
-        message:
-          "   Email service is not configured. Please contact the administrator.",
+        message: "Email service is not configured. Please contact the administrator.",
       });
       setIsSubmitting(false);
       return;
@@ -120,7 +114,7 @@ export default function Contact() {
     ) {
       setStatus({
         type: "error",
-        message: "   Please fill in all fields.",
+        message: "Please fill in all fields.",
       });
       setIsSubmitting(false);
       return;
@@ -130,7 +124,7 @@ export default function Contact() {
     if (!emailRegex.test(formData.email)) {
       setStatus({
         type: "error",
-        message: "   Please enter a valid email address.",
+        message: "Please enter a valid email address.",
       });
       setIsSubmitting(false);
       return;
@@ -153,7 +147,6 @@ export default function Contact() {
       reply_to: formData.email,
     };
 
-
     try {
       const response = await emailjs.send(
         SERVICE_ID,
@@ -167,7 +160,7 @@ export default function Contact() {
 
         setStatus({
           type: "success",
-          message: " Message sent successfully! I'll get back to you soon.",
+          message: "Message sent successfully! I'll get back to you soon.",
         });
         setFormData({ name: "", email: "", message: "" });
 
@@ -176,42 +169,32 @@ export default function Contact() {
         throw new Error(`Unexpected status: ${response.status}`);
       }
     } catch (error) {
-      console.error("EmailJS Error Details:", {
-        message: error.message,
-        text: error.text,
-        status: error.status,
-      });
-
-      let errorMessage = "   Failed to send message. Please try again later.";
+      let errorMessage = "Failed to send message. Please try again later.";
 
       if (error.text) {
         try {
           const parsed = JSON.parse(error.text);
           if (parsed.message) {
-            errorMessage = `   ${parsed.message}`;
+            errorMessage = parsed.message;
           } else if (parsed.error) {
-            errorMessage = `   ${parsed.error}`;
+            errorMessage = parsed.error;
           }
         } catch (e) {
           if (typeof error.text === "string" && error.text.includes("412")) {
-            errorMessage =
-              "   Gmail authentication error. Please reconnect your Gmail service in EmailJS dashboard.";
+            errorMessage = "Gmail authentication error. Please reconnect your Gmail service in EmailJS dashboard.";
           } else {
-            errorMessage = `   ${error.text}`;
+            errorMessage = error.text;
           }
         }
       } else if (error.message) {
         if (error.message.includes("401") || error.message.includes("403")) {
-          errorMessage =
-            "   Invalid EmailJS credentials. Please check your API keys.";
+          errorMessage = "Invalid EmailJS credentials. Please check your API keys.";
         } else if (error.message.includes("404")) {
-          errorMessage =
-            "   Service or Template not found. Please check your IDs.";
+          errorMessage = "Service or Template not found. Please check your IDs.";
         } else if (error.message.includes("412")) {
-          errorMessage =
-            "   Gmail authentication error. Please reconnect your Gmail service in EmailJS dashboard.";
+          errorMessage = "Gmail authentication error. Please reconnect your Gmail service in EmailJS dashboard.";
         } else {
-          errorMessage = `   ${error.message}`;
+          errorMessage = error.message;
         }
       }
 
