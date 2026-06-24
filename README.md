@@ -1,77 +1,73 @@
-# 🚀 Portfolio-React
+🚀 Portfolio-React
+https://img.shields.io/badge/React-19.2.7-61DAFB?style=for-the-badge&logo=react&logoColor=white
+https://img.shields.io/badge/Three.js-r152-000000?style=for-the-badge&logo=three.js&logoColor=white
+https://img.shields.io/badge/Framer_Motion-11.0.2-0055FF?style=for-the-badge&logo=framer&logoColor=white
+https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white
+https://img.shields.io/badge/License-MIT-4ade80?style=for-the-badge&logo=mit&logoColor=white
 
-[![React](https://img.shields.io/badge/React-19.2.7-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
-[![Three.js](https://img.shields.io/badge/Three.js-r152-000000?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.0.2-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
-[![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
-[![License](https://img.shields.io/badge/License-MIT-4ade80?style=for-the-badge&logo=mit&logoColor=white)](LICENSE)
+Live Demo: https://your-portfolio.vercel.app
 
-**Live Demo:** [https://your-portfolio.vercel.app](https://your-portfolio.vercel.app)
+A modern, interactive 3D portfolio template built with React, Three.js, and Framer Motion. Fully customizable with zero coding required.
 
-Modern 3D portfolio template with React, Three.js & Framer Motion. Fully customizable with zero coding required!
+✨ Features
+🎨 Interactive 3D avatar with smooth animations
 
----
+📱 Fully responsive on all devices
 
-## ✨ Features
+🎯 Glass-morphism UI with dark theme
 
-- 🎨 Interactive 3D avatar with animations
-- 📱 Fully responsive design
-- 🎯 Glass-morphism UI with dark theme
-- 📧 Functional contact form with spam protection
-- 🖼️ Dynamic project showcase
-- 📊 Skill visualization
+📧 Functional contact form with EmailJS integration
 
----
+🖼️ Dynamic project showcase with filtering
 
-## 📁 Project Structure
-```
+📊 Visual skill representation
+
+🚀 Smooth scroll and page transitions
+
+🎭 Customizable without touching code
+
+📁 Project Structure
 Portfolio-React/
 └── frontend/
-├── public/
-│ ├── index.html
-│ └── favicon.ico
-├── src/
-│ ├── assets/
-│ │ ├── CV/ ← Your CV goes here
-│ │ │ └── uzair_cv.pdf
-│ │ └── images/ ← Project images go here
-│ │ ├── Api.png
-│ │ ├── Auth.png
-│ │ ├── block.jpg
-│ │ ├── ecom.jpg
-│ │ └── portfolio.png
-│ ├── components/ ← Don't touch these
-│ │ ├── Navbar.jsx
-│ │ ├── Hero.jsx
-│ │ ├── About.jsx
-│ │ ├── Skills.jsx
-│ │ ├── Projects.jsx
-│ │ ├── Contact.jsx
-│ │ └── Footer.jsx
-│ ├── data/
-│ │ └── PortfolioContent.js ← 🔥 ONLY EDIT THIS
-│ ├── styles/ ← CSS files (optional customization)
-│ ├── App.js
-│ └── index.js
-├── .env ← EmailJS keys (optional)
-├── .gitignore
-├── package.json
-└── README.md
-```
-
----
-
-## 🔥 Quick Setup
-
-`bash
+    ├── public/
+    │   ├── index.html
+    │   └── favicon.ico
+    ├── src/
+    │   ├── assets/
+    │   │   ├── CV/              ← Your CV goes here
+    │   │   │   └── uzair_cv.pdf
+    │   │   └── images/          ← Project images go here
+    │   │       ├── Api.png
+    │   │       ├── Auth.png
+    │   │       ├── block.jpg
+    │   │       ├── ecom.jpg
+    │   │       └── portfolio.png
+    │   ├── components/          ← Don't touch these
+    │   │   ├── Navbar.jsx
+    │   │   ├── Hero.jsx
+    │   │   ├── About.jsx
+    │   │   ├── Skills.jsx
+    │   │   ├── Projects.jsx
+    │   │   ├── Contact.jsx
+    │   │   └── Footer.jsx
+    │   ├── data/
+    │   │   └── PortfolioContent.js  ← 🔥 ONLY EDIT THIS
+    │   ├── styles/              ← CSS files (optional)
+    │   ├── App.js
+    │   └── index.js
+    ├── .env                     ← EmailJS keys (optional)
+    ├── .gitignore
+    ├── package.json
+    └── README.md
+🚀 Quick Setup
+bash
 git clone https://github.com/npm-335i/Portfolio-React.git
 cd Portfolio-React/frontend
 npm install
-npm start`
-✏️ Customize (ONLY 3 Steps)
-1. Edit Content
-``
-ONLY file to edit: /frontend/src/data/PortfolioContent.js``
+npm start
+✏️ Customize in 3 Steps
+Step 1: Edit Content
+Only file to edit: /frontend/src/data/PortfolioContent.js
 
 Change everything:
 
@@ -85,66 +81,53 @@ Contact: email, social links, availability
 
 Skills: add/remove skills with levels
 
-2. Add Your CV
+Step 2: Add Your CV
 bash
 # Place your CV in:
-``
 /frontend/src/assets/CV/your_cv.pdf
-``
 
 # Update import in /frontend/src/components/Hero.jsx:
-``
 import cvPDF from "../assets/CV/your_cv.pdf";
-``
-3. Add Project Images
+Step 3: Add Project Images
 bash
 # Place images in:
-``
 /frontend/src/assets/images/your-image.png
-``
 
 # Import in PortfolioContent.js:
-`
 import Project1 from "../assets/images/your-image.png";
-`
 📧 Contact Form Setup (Optional)
-- Sign up at EmailJS
+Sign up at EmailJS
 
-- Create a service & template
+Create a service and template
 
-- Create .env file in /frontend/:
+Create .env file in /frontend/:
 
-- .env Variables
-`REACT_APP_EMAILJS_SERVICE_ID=your_service_id`
-`REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id`
-`REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key`
-
+env
+REACT_APP_EMAILJS_SERVICE_ID=your_service_id
+REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
+REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
 🚀 Deploy to Vercel
-https://vercel.com
-
-Or manually:
-
 Push to GitHub
 
-Import to Vercel
+Import repository to Vercel
 
-Add env variables (if using EmailJS)
+Add environment variables (if using EmailJS)
 
 Deploy!
 
 🛠️ Tech Stack
-React 19
+React 19 - UI Framework
 
-Three.js + React Three Fiber
+Three.js + React Three Fiber - 3D Graphics
 
-Framer Motion
+Framer Motion - Animations
 
-EmailJS
+EmailJS - Contact Form
 
-CSS3
+CSS3 - Styling
 
 📝 License
-MIT License - feel free to use for personal/commercial projects.
+MIT License - Feel free to use for personal or commercial projects.
 
 👨‍💻 Created by
 Uzair - Full Stack Developer
