@@ -58,7 +58,6 @@ Portfolio-React/
 │ └── README.md
 └── README.md
 
-text
 
 ---
 
