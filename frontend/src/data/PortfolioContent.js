@@ -278,8 +278,8 @@ export const PortfolioContent = {
           "Responsive",
           "Animations",
         ],
-        liveUrl: "https://your-portfolio.vercel.app",
-        githubUrl: "https://github.com/npm-335i/Uzair-Portfolio",
+        liveUrl: "https://portfolio-react-git-main-npm-335is-projects.vercel.app",
+        githubUrl: "https://github.com/npm-335i/Portfolio-React",
       },
       {
         id: 5,
