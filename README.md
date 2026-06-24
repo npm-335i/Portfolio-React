@@ -25,39 +25,39 @@ Modern 3D portfolio template with React, Three.js & Framer Motion. Fully customi
 
 ## 📁 Project Structure
 Portfolio-React/
-├── frontend/
-│ ├── public/
-│ │ ├── index.html
-│ │ └── favicon.ico
-│ ├── src/
-│ │ ├── assets/
-│ │ │ ├── CV/ ← Your CV goes here
-│ │ │ │ └── uzair_cv.pdf
-│ │ │ └── images/ ← Project images go here
-│ │ │ ├── Api.png
-│ │ │ ├── Auth.png
-│ │ │ ├── block.jpg
-│ │ │ ├── ecom.jpg
-│ │ │ └── portfolio.png
-│ │ ├── components/ ← Don't touch these
-│ │ │ ├── Navbar.jsx
-│ │ │ ├── Hero.jsx
-│ │ │ ├── About.jsx
-│ │ │ ├── Skills.jsx
-│ │ │ ├── Projects.jsx
-│ │ │ ├── Contact.jsx
-│ │ │ └── Footer.jsx
-│ │ ├── data/
-│ │ │ └── PortfolioContent.js ← 🔥 ONLY EDIT THIS
-│ │ ├── styles/ ← CSS files (optional customization)
-│ │ ├── App.js
-│ │ └── index.js
-│ ├── .env ← EmailJS keys (optional)
-│ ├── .gitignore
-│ ├── package.json
-│ └── README.md
+└── frontend/
+├── public/
+│ ├── index.html
+│ └── favicon.ico
+├── src/
+│ ├── assets/
+│ │ ├── CV/ ← Your CV goes here
+│ │ │ └── uzair_cv.pdf
+│ │ └── images/ ← Project images go here
+│ │ ├── Api.png
+│ │ ├── Auth.png
+│ │ ├── block.jpg
+│ │ ├── ecom.jpg
+│ │ └── portfolio.png
+│ ├── components/ ← Don't touch these
+│ │ ├── Navbar.jsx
+│ │ ├── Hero.jsx
+│ │ ├── About.jsx
+│ │ ├── Skills.jsx
+│ │ ├── Projects.jsx
+│ │ ├── Contact.jsx
+│ │ └── Footer.jsx
+│ ├── data/
+│ │ └── PortfolioContent.js ← 🔥 ONLY EDIT THIS
+│ ├── styles/ ← CSS files (optional customization)
+│ ├── App.js
+│ └── index.js
+├── .env ← EmailJS keys (optional)
+├── .gitignore
+├── package.json
 └── README.md
 
+text
 
 ---
 
@@ -65,13 +65,12 @@ Portfolio-React/
 
 ``bash
 git clone https://github.com/npm-335i/Portfolio-React.git
-cd Portfolio-React
-cd frontend
+cd Portfolio-React/frontend
 npm install
 npm start``
 ✏️ Customize (ONLY 3 Steps)
 1. Edit Content
-ONLY file to edit: /src/data/PortfolioContent.js
+ONLY file to edit: /frontend/src/data/PortfolioContent.js
 
 Change everything:
 
@@ -88,14 +87,14 @@ Skills: add/remove skills with levels
 2. Add Your CV
 bash
 # Place your CV in:
-/src/assets/CV/your_cv.pdf
+/frontend/src/assets/CV/your_cv.pdf
 
-# Update import in /src/components/Hero.jsx:
+# Update import in /frontend/src/components/Hero.jsx:
 import cvPDF from "../assets/CV/your_cv.pdf";
 3. Add Project Images
 bash
 # Place images in:
-/src/assets/images/your-image.png
+/frontend/src/assets/images/your-image.png
 
 # Import in PortfolioContent.js:
 import Project1 from "../assets/images/your-image.png";
@@ -104,7 +103,7 @@ Sign up at EmailJS
 
 Create a service & template
 
-Create .env file in root:
+Create .env file in /frontend/:
 
 env
 REACT_APP_EMAILJS_SERVICE_ID=your_service_id
