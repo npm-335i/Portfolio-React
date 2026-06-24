@@ -1,0 +1,244 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  color: #1d1d1f;
+  background: #06060e;
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: 100vh;
+  background: #06060e;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.app-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #06060e;
+  pointer-events: none;
+}
+
+.grid-pattern-global {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(186, 128, 255, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(186, 128, 255, 0.3) 1px, transparent 1px);
+  background-size: 60px 30px;
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+.grid-pattern-global::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(186, 128, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(186, 128, 255, 0.2) 1px, transparent 1px);
+  background-size: 60px 30px;
+  background-position: 30px 15px;
+  pointer-events: none;
+  animation: gridPulse 4s ease-in-out infinite 0.5s;
+}
+
+.grid-pattern-global::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(45deg, rgba(186, 128, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(-45deg, rgba(186, 128, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  animation: gridPulse 6s ease-in-out infinite 1s;
+}
+
+@keyframes gridPulse {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.dark-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: #06060e;
+  transition: background 0.1s ease;
+}
+
+.global-spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+.global-spotlight-secondary {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: overlay;
+  opacity: 0;
+}
+
+.orb-global {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-global-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent), transparent 70%);
+  top: -150px;
+  right: -150px;
+  animation: floatOrbGlobal 8s ease-in-out infinite;
+}
+
+.orb-global-2 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #9d6bff, transparent 70%);
+  bottom: -100px;
+  left: -100px;
+  animation: floatOrbGlobal 10s ease-in-out infinite reverse;
+}
+
+.orb-global-3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #6c3cb0, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: floatOrbGlobal 12s ease-in-out infinite;
+}
+
+@keyframes floatOrbGlobal {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 30px) scale(0.9);
+  }
+}
+
+.navbar {
+  position: fixed !important;
+  z-index: 1000 !important;
+}
+
+.hero,
+.about,
+.skills-page,
+.projects,
+.contact,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+.hero,
+.about,
+.skills-page,
+.projects,
+.contact {
+  background: transparent !important;
+}
+
+.footer {
+  background: rgba(6, 6, 14, 0.6) !important;
+}
+
+.hero .spotlight {
+  display: none;
+}
+
+.hero .grid-pattern {
+  display: none;
+}
+
+.hero .orb {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #06060e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9d6bff;
+}
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .orb-global-1,
+  .orb-global-2 {
+    opacity: 0.05;
+  }
+
+  .grid-pattern-global {
+    background-size: 40px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orb-global-1,
+  .orb-global-2,
+  .orb-global-3 {
+    opacity: 0.03;
+  }
+
+  .grid-pattern-global {
+    background-size: 30px 15px;
+  }
+}
