@@ -6,7 +6,7 @@
 [![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 [![License](https://img.shields.io/badge/License-MIT-4ade80?style=for-the-badge&logo=mit&logoColor=white)](LICENSE)
 
-**Live Demo:** [https://your-portfolio.vercel.app](https://your-portfolio.vercel.app)
+**Live Demo:** [https://portfolio-react-rosy-eight.vercel.app](https://portfolio-react-rosy-eight.vercel.app)
 
 A modern, interactive 3D portfolio template built with React, Three.js, and Framer Motion. Fully customizable with zero coding required.
 
