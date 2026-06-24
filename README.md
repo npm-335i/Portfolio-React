@@ -24,6 +24,7 @@ Modern 3D portfolio template with React, Three.js & Framer Motion. Fully customi
 ---
 
 ## 📁 Project Structure
+```
 Portfolio-React/
 └── frontend/
 ├── public/
@@ -56,8 +57,7 @@ Portfolio-React/
 ├── .gitignore
 ├── package.json
 └── README.md
-
-text
+```
 
 ---
 
