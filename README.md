@@ -114,13 +114,13 @@ import Project1 from "../assets/images/your-image.png";
 
 - Create .env file in /frontend/:
 
-``env
+``bash
 REACT_APP_EMAILJS_SERVICE_ID=your_service_id
 REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
 REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key``
 
 🚀 Deploy to Vercel
-https://vercel.com/button
+https://vercel.com
 
 Or manually:
 
